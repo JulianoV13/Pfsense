@@ -1,0 +1,22 @@
+#Configuração do recurso de NTP Server do pfSense
+Services
+    NTP
+        Settings
+            NTP Server Configuration
+                Interface: LAN
+                Time Services: a.st1.ntp.br is a Pool
+                Time Services: a.ntp.br is a Pool
+                Orphan Mode: DEFAULT
+                NTP Graphs: ON
+                Logging: ON
+                Statistics Logging: ON
+                Lep seconds: DEFAULT
+            save
+
+#Verificando o Serviço do NTP Server
+Status
+    NTP
+
+Status
+    System Logs
+        NTP
