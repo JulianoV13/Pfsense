@@ -1,0 +1,34 @@
+# Configuração geral do pfSense webConfigurator
+Sistema
+Configurações Gerais
+Sistema
+Nome do host: NOME_DO_FIREWALL_MATRIZ_BRANCH
+Domínio: DOMAIN_OF_COMPANY
+Configurações do servidor DNS
+Servidores DNS: 8.8.8.8 - Nome do host DNS: Nenhum - Gateway: Nenhum
+            Servidores DNS: 8.8.4.4 - Nome do host DNS: Nenhum - Gateway: Nenhum
+Substituição do servidor DNS: OFF
+Desativar DNS Forwarder: OFF
+localização
+Fuso horário: América/Recife (corrige o problema do horário de verão)
+Servidores de horário: a.st1.ntp.br
+língua Inglesa
+configurador web
+Tópico: pfSense-dark
+Navegação superior: rola a página
+Nome do host no menu: nome de domínio totalmente qualificado
+Pilares do painel: 3
+Interface de classificação:
+Ordenar alfabeticamente: ATIVADO
+Mostrar/ocultar painel associado
+Widgets disponíveis: ON
+Filtro de registro: ATIVADO
+Gerenciamento de log: ATIVADO
+Rastreamento: ATIVADO
+Exigir filtro de estado: OFF
+Rótulos da coluna esquerda: DESATIVADO
+Pop-ups de alias: OFF
+Desativar arrastar e soltar: OFF
+Cor da página de login: azul escuro
+Nome de login do host: ATIVADO
+Impor
