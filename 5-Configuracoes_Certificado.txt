@@ -1,0 +1,45 @@
+#Configuração do CA e do Certificado SSL do pfSense
+System
+	Cert. Manager
+		CAs
+			ADD
+				Create / Edit CA
+					Descriptive name: EMPRESA_MATRIZ_FILIAL
+					Method: Create an internal Certificate Authority
+				Internal Certificate Authority
+					Key lenght (bits): 2048
+					Digest Algorithm: sha256
+					Lifetime (days): 3650
+					Common Name: empresa-ca
+					Country Code: PAÍS_EMPRESA
+					Sate or Province: ESTADO_EMPRESA
+					City: CIDADE_EMPRESA
+					Organization: NOME_EMPRESA_MATRIZ_FILIAL
+					Organizational Unit: MATRIZ_FILIAL_EMPRESA
+			save
+		Certificates
+			Add/Sign
+				Add/Sign a New Certificate
+					Method: Create an internal Certificate
+					Descriptive name: Certificado MATRIZ_FILIAL_EMPRESA Firewall
+				Internal Certificate 
+					Certificate authority: EMPRESA 
+					Key lenght: 2038
+					Digest Algorithm: sha256
+					Lifetime (days): 3650
+					Common Name: empresa.local 
+					Country Code: BR
+					State or Province: Sao Paulo
+					City: Sao Paulo
+					Organization: EMPRESA
+					Organization Unit: Matriz Sao Paulo 
+				Certificate Attributes
+					Certificate Type: Server Certificate
+					Alternative Names:
+						IP Address: IP_LAN_SERVER
+						FQDN or Hostname: NAME_SERVER
+						FQDN or Hostname: NAME_FQDN_SERVER
+                        FQDN or Hostname: ALIAS_DYNAMIC_DNS-01_VPN-IPSEC-HA-LB
+                        FQDN or Hostname: ALIAS_DYNAMIC_DNS-02_VPN-OPENVPN-VIVO
+                        FQDN or Hostname: ALIAS_DYNAMIC_DNS-03_VPN-OPENVPN-NET
+			save
