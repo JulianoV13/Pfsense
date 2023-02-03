@@ -1,0 +1,72 @@
+# Instale Netgear pfSense
+Aviso de direitos autorais e distribuição
+    aceitar
+Bem-vindo
+    Bem-vindo ao pfSense!
+        Instale-o
+            OK
+    Selecionando um mapa de teclado
+        brasileiro (chaves acentuadas)
+        Continue com o mapa de teclas br.kdb
+            Escolher
+    Particionamento
+        Carro (UFS)
+            OK
+    configuração manual
+        Em
+    Completo
+        reiniciar
+
+# Configure o console pfSense
+2) Defina o endereço IP da interface
+    Digite o número da interface que deseja configurar: 2
+    Insira o novo endereço IPv4 da LAN: IP_LAN_MATRIZ_OU_FILIAL
+    Digite o novo número de bits de sub-rede LAN IPv4 (1 a 31): 16
+    Para LAN, pressione <Enter> para nome: nenhum
+    Insira o novo endereço LAN IPv6 e pressione <Enter> para o nome: nenhum
+    Deseja habilitar um servidor DHCP na LAN? (s/n): s
+    Digite o endereço inicial do intervalo de endereços do cliente IPv4: INICIO_FAIXA_IP
+    Digite o endereço final do intervalo de endereços do cliente IPv4: FIM_FAIXA_IP
+    Deseja voltar ao HTTP como o protocolo webConfigurator? (s/n): s
+
+# Configure o assistente pfSense
+http://ENDEREÇO_IPV4_PFSENSE
+    Conecte-se
+        Usuário: administrador
+        Senha: pfsense
+        CONECTE-SE
+    configurações pfSense
+        Bem-vindo ao software pfSense
+        Next
+    O suporte global Netgate está disponível 24 horas por dia, 7 dias por semana
+        Next
+    Informação geral
+        Nome do host: HOSTNAME_FIREWALL_MATRIZ_BRANCH
+        Domínio: DOMAIN_NAME
+        Servidor DNS primário: ADDRESS_IPV4_DNS_PUBLIC
+        Servidor DNS secundário: ADDRESS_IPV4_DNS_PUBLIC
+        Reescrita de DNS: OFF
+        Next
+    Informações do servidor de horário
+        Nome do host do servidor de horário: a.st1.ntp.br
+        Fuso horário: América/Recife
+        Next
+    configurar a interface WAN
+        Predefinição
+        Next
+    configuração da interface LAN
+        Endereço IP da LAN: IP_LAN_MATRIZ_OU_BRANCH
+        Máscara de sub-rede: 16
+        Next
+    Definir a senha do administrador WebGUI
+        Senha do administrador: NEW_PASSWORD
+        Senha do administrador NOVAMENTE: NOVO_PASSWORD
+        Next
+    recarregar configuração
+        recarregar
+    Assistente concluído
+        Completo
+    NENHUMA DISTRIBUIÇÃO COMERCIAL DO SOFTWARE PFSENSE CE É PERMITIDA
+        aceitar
+    Obrigada
+        Perto
