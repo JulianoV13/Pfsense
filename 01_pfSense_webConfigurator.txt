@@ -1,0 +1,274 @@
+Hardware usado no pfSense Firewall Project-01
+01 (um) aparelho J1900
+01 (um) Link Vivo Fibra WAN (Modelo: Modo Bridge)
+01 (um) Link NET WAN (Modelo: Modo Bridge)
+
+Thread de autenticação PPPoE do usuário VIVO
+Usuário: cliente@cliente - Senha: cliente
+Usuário: linkbr@linkbr.com.br - Senha: linkbr
+Usuário: vivo@vivo - Senha: vivo
+Usuário: speedy@speedy - Senha: speedy
+
+Servidores DNS testados e configurados no pfSense
+DNS Google..............: Preferencial: 8.8.8.8 - Secundário: 8.8.4.4
+OpenDNS Cisco.........: Preferencial: 208.67.222.222 - Secundário: 208.67.220.220
+OpenDNS FamilyShield....: Preferencial: 208.67.222.123 - Secundário: 208.67.220.123
+CloudFlare..............: Preferencial: 1.1.1.1 - Secundário: 1.0.0.1
+CloudFlare FamilyShield.: Preferencial: 1.1.1.3 - Menor: 1.0.0.3
+
+Servidores DDNS testados e configurados no pfSense
+No-IP...: https://www.noip.com/pt-BR
+CloudDNS..: https://www.cloudns.net/wiki/article/268/
+Winco...: https://ddns.winco.com.br/dns-dinamico-free
+FreeDNS..: https://freedns.afraid.org/
+DuckDNS..: http://www.duckdns.org/
+
+Netgear pfSense 2.4.5 (RELEASE-p1 - FreeBSD 11.3-STABLE)
+
+# Configuração geral do pfSense webConfigurator
+Sistema
+Configurações Gerais
+Sistema
+Nome do host: FIREWALL_NAME
+Domínio: DOMAIN_OF_COMPANY
+Configurações do servidor DNS
+Servidores DNS: 8.8.8.8
+            Servidores DNS: 8.8.4.4
+Substituição do servidor DNS: OFF
+Desativar DNS Forwarder: OFF
+localização
+Fuso horário: América/Recife (corrige o problema do horário de verão)
+Servidores de horário: a.st1.ntp.br
+língua Inglesa
+configurador web
+Tópico: pfSense-dark
+Navegação superior: rola a página
+Nome do host no menu: nome de domínio totalmente qualificado
+Pilares do painel: 3
+Interface de classificação:
+Ordenar alfabeticamente: ATIVADO
+Mostrar/ocultar painel associado
+Widgets disponíveis: ON
+Filtro de registro: ATIVADO
+Gerenciamento de log: ATIVADO
+Rastreamento: ATIVADO
+Exigir filtro de status:
+Não exibir tabela de status sem filtro: OFF
+Rótulos da coluna esquerda
+Ativar: DESLIGADO
+pop-ups de alias
+Desabilitar detalhes em pop-ups de alias: OFF
+Desativar arrastar e soltar
+Desativar arrastar regras de firewall/nat: OFF
+Cor da página de login: azul escuro
+nome de login do host
+Mostrar nome do host no banner de login: ATIVADO
+Impor
+
+# Configure o painel pfSense
+Painel
+widget disponível
+Informações do sistema: ON
+Interface: ON
+Portões: ON
+Estado NTP: ON
+Status do serviço: ATIVADO
+Status do balanceador de carga: ATIVADO
+Gráficos de tráfego: ON
+Registros de firewall: ON
+Estatísticas da interface: ON
+        Status do DNS dinâmico: ATIVADO
+        OpenVPN: ATIVADO
+Impor
+
+# Configure o pfSense CA e o certificado SSL
+Sistema
+Gerenciador de certificados
+ca
+ADICIONAR
+Criar / Editar CA
+Nome descritivo: EMPRESA
+Método: Criar uma CA interna
+Autoridade de Certificação Interna
+Comprimento da chave (bits): 2048
+Algoritmo de resumo: sha256
+Tempo de vida (dias): 3650
+Nome geral: empresa-ca
+Código do país: BR
+Estado ou Província: São Paulo
+Cidade: São Paulo
+Organização: Empresa XYZ
+Unidade Organizacional: Sede São Paulo
+Impor
+certificados
+Adicionar/Assinar
+Adicionar/assinar um novo certificado
+Método: Criar um certificado interno
+Nome descritivo: EMPRESA Certificado de firewall
+certificado interno
+Autoridade Certificadora: EMPRESA
+Comprimento da chave: 2038
+Algoritmo de resumo: sha256
+Tempo de vida (dias): 3650
+Nome comum: empresa.local
+Código do país: BR
+Estado ou Província: São Paulo
+Cidade: São Paulo
+Organização: SOCIEDADE
+Unidade organizacional: Matriz São Paulo
+Atributos do certificado
+Tipo de certificado: certificado do servidor
+Nomes alternativos:
+Endereço IP: IP_SERVER
+FQDN ou nome do host: NAME_SERVER
+FQDN ou nome do host: NAME_FQDN_SERVER
+Impor
+
+# Configuração avançada do pfSense webConfigurator
+Sistema
+Avançado
+Acesso de administrador
+configurador web
+Protocolo: HTTPS
+Certificado SSL/TLS: Certificado de firewall da EMPRESA
+Porta TCP: Padrão
+Número máximo de processos: 2
+Redirecionamento WebGUI: DESATIVADO
+HTS: DESLIGADO
+Grampeamento OCSP Necessário: DESLIGADO
+Login WebGUI de preenchimento automático: ATIVADO
+Mensagens de login da WebGUI: OFF
+Antibloqueio: DESLIGADO
+Verificação de religação de DNS: DESLIGADO
+Nomes de host alternativos: OFF
+Aplicação de HTTP_REFERER do navegador: OFF
+Texto da guia do navegador: DESATIVADO
+Capsula segura
+Servidor Shell Seguro: ATIVADO
+Somente chave SSHd: Senha ou chave pública
+Permitir redirecionamento de agente: OFF
+Porta SSH: 22
+proteção de login
+Limiar: 30
+Bloqueio: 120
+Tempo de detecção: 1800
+Lista de permissões: padrão
+Comunicação em série
+Terminal serial: DESLIGADO
+Velocidade serial: 115200
+Console principal: console serial
+Opções do console
+Menu do console: ATIVADO
+Impor
+
+# Configuração das interfaces pfSense WAN e LAN
+Interface
+Tarefas
+Atribuição de interface
+LAN (on0)
+Configuração geral
+Ativar: ATIVADO
+Descrição: LAN
+Tipo de configuração IPv4: IPv4 estático
+Tipo de configuração IPv6: nenhum
+Endereço MAC: DESLIGADO
+MTU: DESLIGADO
+MSS: DESLIGADO
+Velocidade e Duplex: Padrão (sem preferência, geralmente seleção automática)
+configuração estática IPv4
+Endereço IPv4: IPV4_GATEWAY/24
+Gateway Upstream IPv4: Nenhum
+redes dedicadas
+Bloquear redes privadas e endereços de loopback: OFF
+Bloquear rede bogon: OFF
+Impor
+Aplicar mudanças
+WAN1 (em 1) VIVO
+Configuração geral
+Ativar: ATIVADO
+Descrição: LAN
+Tipo de configuração IPv4: PPPoE
+Tipo de configuração IPv6: nenhum
+Endereço MAC: DESLIGADO
+MTU: DESLIGADO
+MSS: DESLIGADO
+Velocidade e Duplex: Padrão (sem preferência, geralmente seleção automática)
+configuração PPPoE
+Nome de usuário: cliente@cliente
+Senha: cliente - Confirmar: cliente
+Nome do serviço: OFF
+Discar sob demanda: OFF
+Tempo limite de inatividade: DESLIGADO
+Reinicialização periódica: Desativado
+Avançado e MLPPP: Padrão
+redes dedicadas
+Bloquear redes privadas e endereços de loopback: ON
+Bloquear rede bogon: ON
+Impor
+Aplicar mudanças
+WAN2 (on2) NET
+Configuração geral
+Ativar: ATIVADO
+Descrição: LAN
+Tipo de configuração IPv4: DHCP
+Tipo de configuração IPv6: nenhum
+Endereço MAC: DESLIGADO
+MTU: DESLIGADO
+MSS: DESLIGADO
+Velocidade e Duplex: Padrão (sem preferência, geralmente seleção automática)
+Configuração do cliente DHCP
+Opções: DESLIGADO
+Substituição da configuração: OFF
+Nome do host: DESATIVADO
+Alias ​​​​​​​​endereço IPv4: OFF
+Rejeitar aluguéis de: OFF
+redes dedicadas
+Bloquear redes privadas e endereços de loopback: ON
+Bloquear rede bogon: ON
+Impor
+Aplicar mudanças
+
+#Configuração das funções Failover e Failback para a interface pfSense WAN
+Sistema
+    Avançado
+        Misturado
+            balanceamento de carga
+                Balanceamento de carga: ATIVADO
+        Impor
+    Roteamento
+        Grupos de portas
+            ADICIONAR
+                Editar entrada do grupo de gateway
+                    Nome do grupo: HA_LB_Internet
+                    Prioridade de gateway
+                        WAN1_DHCP Tier 1 Interface Endereço Interface Interface VIVO
+                        WAN1_DHCP Tier 2 Interface Address Interface Interface NET
+                    Nível de disparo: perda de pacotes ou alta latência
+                    Descrição: Grupo de interfaces Live e NET Gateway
+                Impor
+                Aplicar mudanças
+        portões
+            gateway padrão
+                Gateway padrão IPv4: HA_LB_Internet
+                Gateway Padrão IPv6: Automático
+            Impor
+            Aplicar mudanças
+        portões
+            WAN1_DHCP
+                Editar
+                    Editar gateway
+                        IP do monitor: 8.8.8.8
+                        Descrição: interface VIVO
+                    Visualização avançada
+                        Limites de latência: 400.600
+                        Limite de perda de pacotes: 30% 40%
+                    Impor
+                    Aplicar mudanças
+            WAN2_DHCP
+                Editar
+                    Editar gateway
+                        IP do monitor: 1.1.1.1
+                        Descrição: interface NET
+                    Visualização avançada
+                        Limites de latência: 400.600
+                        Limite de Perda de Pacote
